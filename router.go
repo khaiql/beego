@@ -30,6 +30,7 @@ import (
 	beecontext "github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/toolbox"
 	"github.com/astaxie/beego/utils"
+	"github.com/honeybadger-io/honeybadger-go"
 )
 
 // default filter execution points
@@ -859,6 +860,9 @@ func (p *ControllerRegister) recoverPanic(context *beecontext.Context) {
 				}
 				Critical(fmt.Sprintf("%s:%d", file, line))
 				stack = stack + fmt.Sprintln(fmt.Sprintf("%s:%d", file, line))
+			}
+			if BConfig.HoneybadgerAPIKey != "" {
+				honeybadger.Notify(err)
 			}
 			if BConfig.RunMode == DEV {
 				showErr(err, context, stack)

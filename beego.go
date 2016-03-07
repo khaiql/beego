@@ -20,6 +20,8 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+
+	"github.com/honeybadger-io/honeybadger-go"
 )
 
 const (
@@ -96,6 +98,8 @@ func initBeforeHTTPRun() {
 			panic(err)
 		}
 	}
+
+	initHoneyBadger()
 }
 
 // TestBeegoInit is for test package init
@@ -104,4 +108,12 @@ func TestBeegoInit(ap string) {
 	AppConfigPath = filepath.Join(ap, "conf", "app.conf")
 	os.Chdir(ap)
 	initBeforeHTTPRun()
+}
+
+func initHoneyBadger() {
+	if BConfig.HoneybadgerAPIKey != "" {
+		honeybadger.Configure(honeybadger.Configuration{
+			APIKey: BConfig.HoneybadgerAPIKey,
+			Env:    BConfig.RunMode})
+	}
 }

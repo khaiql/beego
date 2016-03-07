@@ -39,6 +39,7 @@ type Config struct {
 	Listen              Listen
 	WebConfig           WebConfig
 	Log                 LogConfig
+	HoneybadgerAPIKey   string
 }
 
 // Listen holds for http and https related config
@@ -124,6 +125,7 @@ func init() {
 		EnableGzip:          false,
 		MaxMemory:           1 << 26, //64MB
 		EnableErrorsShow:    true,
+		HoneybadgerAPIKey:   "",
 		Listen: Listen{
 			Graceful:      false,
 			ServerTimeOut: 0,
@@ -206,6 +208,7 @@ func ParseConfig() (err error) {
 	BConfig.EnableErrorsShow = AppConfig.DefaultBool("EnableErrorsShow", BConfig.EnableErrorsShow)
 	BConfig.CopyRequestBody = AppConfig.DefaultBool("CopyRequestBody", BConfig.CopyRequestBody)
 	BConfig.MaxMemory = AppConfig.DefaultInt64("MaxMemory", BConfig.MaxMemory)
+	BConfig.HoneybadgerAPIKey = AppConfig.DefaultString("HoneybadgerAPIKey", BConfig.HoneybadgerAPIKey)
 	BConfig.Listen.Graceful = AppConfig.DefaultBool("Graceful", BConfig.Listen.Graceful)
 	BConfig.Listen.HTTPAddr = AppConfig.String("HTTPAddr")
 	BConfig.Listen.HTTPPort = AppConfig.DefaultInt("HTTPPort", BConfig.Listen.HTTPPort)
