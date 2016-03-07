@@ -95,3 +95,8 @@ httplib support mutil file upload, use `req.PostFile()`
 See godoc for further documentation and examples.
 
 * [godoc.org/github.com/astaxie/beego/httplib](https://godoc.org/github.com/astaxie/beego/httplib)
+
+## Add Honeybadger to monitor error
+
+- Obtain the API Key from http://honeybadger.io.
+- In the app.conf file, set value for HoneybadgerAPIKey 

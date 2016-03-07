@@ -44,6 +44,12 @@ Please see [Documentation](http://beego.me/docs) for more.
 * Powerful development tools
 * Full stack for Web & API
 
+
+## Add Honeybadger to monitor error
+
+* Obtain the API Key from http://honeybadger.io.
+* In the app.conf file, set value for HoneybadgerAPIKey 
+
 ## Documentation
 
 * [English](http://beego.me/docs/intro/)
