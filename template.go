@@ -39,7 +39,7 @@ var (
 )
 
 func executeTemplate(wr io.Writer, name string, data interface{}) error {
-	if BConfig.RunMode == DEV {
+	if true {
 		templatesLock.RLock()
 		defer templatesLock.RUnlock()
 	}
